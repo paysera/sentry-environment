@@ -1,0 +1,54 @@
+version: '2'
+services:
+  redis:
+    image: redis:3.2-alpine
+
+  rabbitmq:
+    image: rabbitmq:3
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  sentry:
+    image: sentry:8.6
+    ports:
+      - 9000:9000
+    volumes:
+      - sentry:/var/lib/sentry/files
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - rabbitmq
+      - postgres
+
+  sentry-cron:
+    image: sentry:8.6
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - rabbitmq
+      - postgres
+    command: sentry run cron
+
+  sentry-worker:
+    image: sentry:8.6
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - rabbitmq
+      - postgres
+    command: sentry run worker
+
+volumes:
+  postgres: {}
+  sentry: {}
+  rabbitmq: {}
