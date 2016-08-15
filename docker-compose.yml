@@ -2,6 +2,9 @@ version: '2'
 services:
   redis:
     image: redis:3.2-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis:/data
 
   rabbitmq:
     image: rabbitmq:3
@@ -16,7 +19,7 @@ services:
       - .env
 
   sentry:
-    image: sentry:8.6
+    image: sentry:8.7
     ports:
       - 9000:9000
     volumes:
@@ -29,7 +32,7 @@ services:
       - postgres
 
   sentry-cron:
-    image: sentry:8.6
+    image: sentry:8.7
     env_file:
       - .env
     depends_on:
@@ -39,7 +42,7 @@ services:
     command: sentry run cron
 
   sentry-worker:
-    image: sentry:8.6
+    image: sentry:8.7
     env_file:
       - .env
     depends_on:
@@ -52,3 +55,4 @@ volumes:
   postgres: {}
   sentry: {}
   rabbitmq: {}
+  redis: {}
