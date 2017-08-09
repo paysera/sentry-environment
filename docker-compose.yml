@@ -19,7 +19,7 @@ services:
       - .env
 
   sentry:
-    image: sentry:8.17.0
+    image: sentry:8.19.0
     ports:
       - 80:9000
     volumes:
@@ -32,7 +32,7 @@ services:
       - postgres
 
   sentry-cron:
-    image: sentry:8.17.0
+    image: sentry:8.19.0
     env_file:
       - .env
     depends_on:
@@ -42,7 +42,7 @@ services:
     command: sentry run cron
 
   sentry-worker:
-    image: sentry:8.17.0
+    image: sentry:8.19.0
     env_file:
       - .env
     depends_on:
