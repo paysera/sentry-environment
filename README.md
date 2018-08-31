@@ -2,7 +2,7 @@
 ### Initial setup
 ##### Create .env file
 ```bash
-echo -e "#postgres\nPOSTGRES_PASSWORD=sentry\nPOSTGRES_USER=sentry\n#sentry\nSENTRY_SECRET_KEY=liglagveumHovMuckWasbajethOcvoyp\nSENTRY_RABBITMQ_HOST=rabbitmq\nSENTRY_REDIS_HOST=redis\nSENTRY_POSTGRES_HOST=postgres\nSENTRY_DB_USER=sentry\nSENTRY_DB_PASSWORD=sentry" > .env
+echo -e "#docker-compose\nCOMPOSE_PROJECT_NAME=sentryenvironment\n#postgres\nPOSTGRES_PASSWORD=sentry\nPOSTGRES_USER=sentry\n#sentry\nSENTRY_SECRET_KEY=liglagveumHovMuckWasbajethOcvoyp\nSENTRY_RABBITMQ_HOST=rabbitmq\nSENTRY_REDIS_HOST=redis\nSENTRY_POSTGRES_HOST=postgres\nSENTRY_DB_USER=sentry\nSENTRY_DB_PASSWORD=sentry" > .env
 ```
 
 ### Control
